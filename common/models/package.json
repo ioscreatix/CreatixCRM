@@ -1,0 +1,86 @@
+{
+  "name": "Package",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "identifier": {
+      "type": "string"
+    },
+    "shortDescription": {
+      "type": "string",
+      "required": true,
+      "default": "An Awesome Mobile Substrate Tweak"
+    },
+    "minimum": {
+      "type": "string"
+    },
+    "maximum": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    },
+    "maintainer": {
+      "type": "string"
+    },
+    "visible": {
+      "type": "boolean",
+      "default": true
+    },
+    "stage": {
+      "type": "string",
+      "default": "stable"
+    },
+    "latest": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "owner": {
+      "type": "belongsTo",
+      "model": "Account",
+      "foreignKey": "accountId"
+    },
+    "versions": {
+      "type": "hasMany",
+      "model": "PackageVersion",
+      "foreignKey": ""
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "upload"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "*"
+    }
+  ],
+  "methods": {}
+}

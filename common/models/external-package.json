@@ -1,0 +1,17 @@
+{
+  "name": "ExternalPackage",
+  "base": "BasePackage",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "repository": {
+      "type": "object"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

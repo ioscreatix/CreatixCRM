@@ -1,0 +1,43 @@
+{
+  "name": "PackageVersion",
+  "plural": "PackageVersions",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "version": {
+      "type": "string",
+      "required": true
+    },
+    "changes": {
+      "type": "string"
+    },
+    "dependencies": {
+      "type": "string"
+    },
+    "visible": {
+      "type": "boolean",
+      "default": true
+    },
+    "raw": {
+      "type": "object"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "package": {
+      "type": "belongsTo",
+      "model": "Package",
+      "foreignKey": ""
+    },
+    "file": {
+      "type": "hasOne",
+      "model": "PackageFile",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
