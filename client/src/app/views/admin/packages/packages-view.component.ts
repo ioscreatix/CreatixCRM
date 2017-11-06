@@ -45,14 +45,11 @@ export class PackagesViewComponent implements AfterViewInit, OnDestroy{
 
 
   ngAfterViewInit() {
-    jQuery('body').addClass('page-aside-left');
-    jQuery('body').addClass('page-aside-scroll');
+    // jQuery('body').addClass('page-aside-left');
+    // jQuery('body').addClass('page-aside-scroll');
     jQuery('body').addClass('app-packages');
-    console.log("test reload");
+   // console.log("test reload");
     this.packageAPI.find({
-      include: {
-        versions: 'file'
-      }
     })
       .subscribe((packages : Package[]) => {
         this.packages = packages;
@@ -70,7 +67,7 @@ export class PackagesViewComponent implements AfterViewInit, OnDestroy{
 
     ngOnDestroy() {
       jQuery('body').removeClass('app-packages');
-      jQuery('body').removeClass('page-aside-scroll');
-      jQuery('body').removeClass('page-aside-left');
+      // jQuery('body').removeClass('page-aside-scroll');
+      // jQuery('body').removeClass('page-aside-left');
     }
 }

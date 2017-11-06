@@ -67,7 +67,7 @@ module.exports = function(app) {
         //console.log(foundUser);
         var emails = foundUser.profile.emails;
         for (var x = 0; x < emails.length; x++) {
-          if (emails[x].value.indexOf('REDACTED') !== -1) {
+          if (emails[x].value.indexOf('@vtsd.com') !== -1) {
             return cb(null, true);
           }
         }

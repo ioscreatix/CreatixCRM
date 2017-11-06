@@ -34,16 +34,17 @@ module.exports = function(Package) {
             'Version: ' + packageVersion.version + '\n' +
             'Maintainer: ' + packageObject.maintainer + '\n' +
             'Depends: ' + packageVersion.dependencies + '\n' +
-            'Filename: ' + '.' + packageVersion.file.url + '\n' +
+            'Filename: ' + packageVersion.file.url + '\n' +
             'Size: ' + packageVersion.file.size + '\n' +
             'Architecture: ' + 'iphoneos-arm' + '\n' +
             'Description: ' + packageObject.shortDescription + '\n' +
             'Name: ' + packageObject.name + '\n' +
             'Author: ' + packageObject.author + '\n' +
             'Depiction: ' + 'http://repo.ioscreatix.com/index.php?pid=130' + '\n' +
-            'MD5: ' + packageVersion.file.md5 + '\n' +
+            'MD5sum: ' + packageVersion.file.md5 + '\n' +
             'SHA1: ' + packageVersion.file.sha1 + '\n' +
-            'SHA256: ' + packageVersion.file.sha256 + '\n' + '\n'
+            'SHA256: ' + packageVersion.file.sha256 + '\n' +
+            'Installed-Size: ' + packageVersion.raw['Installed-Size'] + '\n' + '\n'
           );
         });
       });
@@ -142,7 +143,7 @@ module.exports = function(Package) {
 
   Package.remoteMethod(
         'upload', {
-          description: 'Uploads a Debian Package to the Repostiory',
+          description: 'Uploads a Debian Package to the Repository',
           accepts: [{
             arg: 'ctx',
             type: 'object',

@@ -5,12 +5,14 @@ import {BlankLayoutComponent} from "./components/common/layouts/blankLayout.comp
 import {DashboardLayoutComponent} from "./components/common/layouts/dashboardLayout.component";
 import {LoginViewComponent} from "./views/login/login.component";
 import {PackagesViewComponent} from "./views/admin/packages/packages-view.component";
+import {PackageViewComponent} from "./views/admin/package/package-view.component";
 const routes: Routes = [
 
   {
     path: '', component: DashboardLayoutComponent,
     children: [
       { path: 'admin/packages', component: PackagesViewComponent },
+      { path: 'admin/packages/:id', component: PackageViewComponent },
     ]
   },
   {

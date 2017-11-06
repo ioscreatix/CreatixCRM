@@ -2,9 +2,9 @@
   "db": {
     "host": "localhost",
     "port": 27017,
-    "url": "mongodb://localhost:27017/ioscreatix-8",
-    "database": "ioscreatix-7",
-    "password": "NOT_GIVEN",
+    "url": "mongodb://localhost:27017/ioscreatix-22",
+    "database": "ioscreatix-22",
+    "password": "Creatix123?",
     "name": "db",
     "user": "admin",
     "connector": "mongodb"
@@ -13,11 +13,11 @@
     "name": "container",
     "connector": "loopback-component-storage-deb-gridfs",
     "host": "localhost",
-    "url": "mongodb://localhost:27017/ioscreatix-8",
+    "url": "mongodb://localhost:27017/ioscreatix-22",
     "port": 27017,
-    "database": "ioscreatix-8",
+    "database": "ioscreatix-22",
     "username": "admin",
     "user": "admin",
-    "password": "NOT_GIVEN"
+    "password": "Creatix123?"
   }
 }

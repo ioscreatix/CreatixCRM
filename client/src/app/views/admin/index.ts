@@ -3,7 +3,7 @@ import { FormsModule }   from '@angular/forms';
 import {BrowserModule} from "@angular/platform-browser";
 import {RouterModule} from "@angular/router";
 import {PackagesViewModule} from "./packages/index";
-
+import {PackageViewModule} from "./package/index";
 
 @NgModule({
   declarations: [
@@ -12,7 +12,8 @@ import {PackagesViewModule} from "./packages/index";
     BrowserModule,
     RouterModule,
     FormsModule,
-    PackagesViewModule
+    PackagesViewModule,
+    PackageViewModule
   ],
   exports: [
   ],

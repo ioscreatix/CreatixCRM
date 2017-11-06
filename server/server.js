@@ -51,11 +51,14 @@ app.use('/auth/success', function(req, res, next) {
 
 app.use('/stuff', function(req,res,next) {
   console.log(JSON.stringify(req.headers));
-  next();
+  var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  console.log(ip);
+  res.send(ip);
+  //next();
 })
 
 app.use(session({
-  secret: 'REDACTED',
+  secret: 'secret-cookie',
 }));
 
 app.use(bodyParser.json());

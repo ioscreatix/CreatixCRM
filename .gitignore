@@ -24,3 +24,4 @@ output
 providers.json
 *.deb
 client/dist
+server/datasources.json
