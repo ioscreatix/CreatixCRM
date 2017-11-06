@@ -1,0 +1,22 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "mongodb",
+    "host": "localhost",
+    "port": 27017,
+    "url": "mongodb://localhost:27017/cydia-repo",
+    "database": "cydia-repo",
+    "user": "DATABASE-USER-USERNAME",
+    "password": "DATABASE-USER-PASSWORD"
+  },
+  "container": {
+    "name": "container",
+    "connector": "loopback-component-storage-deb-gridfs",
+    "host": "localhost",
+    "port": 27017,
+    "url": "mongodb://localhost:27017/cydia-repo-fs",
+    "database": "cydia-repo-fs",
+    "user": "DATABASE-USER-USERNAME",
+    "password": "DATABASE-USER-PASSWORD"
+  }
+}
