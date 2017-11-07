@@ -64,5 +64,13 @@
   "PackageVersion": {
     "dataSource": "db",
     "public": true
+  },
+  "Section": {
+    "dataSource": "db",
+    "public": true
+  },
+  "PackageDownload": {
+    "dataSource": "db",
+    "public": false
   }
 }

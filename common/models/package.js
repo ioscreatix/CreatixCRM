@@ -87,56 +87,74 @@ module.exports = function(Package) {
         };
 
         var stanza = controlData;
-        Package.findOrCreate({
+
+        //if (stanza['Section'] && stanza['Section'].length) {
+        Package.app.models.Section.findOrCreate({
           where: {
-            identifier: stanza.Package
+            name: stanza['Section'] ? stanza['Section'] : 'Tweak'
           }
         }, {
-          name: stanza.Name,
-          identifier: stanza.Package,
-          author: stanza['Author'],
-          maintainer: stanza['Maintainer'],
-          latest: stanza['Version'] ? stanza['Version'] : '0.0.1',
-          stage: stanza['Stage'] ? stanza['Stage'] : 'Stable',
-          accountId: ctx.req.accessToken.userId
-        }, function(packageError, packageObject, packageCreated) {
-          if (packageError) {
-            console.log(packageError);
-            cb(packageError);
+          name: stanza['Section'] ? stanza['Section'] : 'Tweak'
+        }, function(sectionError, sectionObject, sectionCreated) {
+          if (sectionError) {
+            console.log(sectionError);
+            cb(sectionError);
             return;
           } else {
-            if (!packageCreated) {
-              if (stanza['Version']) {
-                packageObject.latest = stanza['Version'];
-                packageObject.save();
+             Package.findOrCreate({
+              where: {
+                identifier: stanza.Package
               }
-            }
-            Package.app.models.PackageVersion.create({
-              version: stanza['Version'] ? stanza['Version'] : '0.0.1',
-              packageId: packageObject.id,
-              dependencies: stanza['Depends'],
-              raw: stanza
-            }, function(packageVersionError, packageVersionObject) {
-              if (packageVersionError) {
-                console.log(packageVersionError);
-                cb(packageVersionError);
+            }, {
+              name: stanza.Name,
+              identifier: stanza.Package,
+              author: stanza['Author'],
+              maintainer: stanza['Maintainer'],
+              latest: stanza['Version'] ? stanza['Version'] : '0.0.1',
+              stage: stanza['Stage'] ? stanza['Stage'] : 'Stable',
+              accountId: ctx.req.accessToken.userId,
+              sectionId: sectionObject.id
+
+            }, function(packageError, packageObject, packageCreated) {
+              if (packageError) {
+                console.log(packageError);
+                cb(packageError);
                 return;
               } else {
-                obj['packageVersionId'] = packageVersionObject.id;
-                Package.app.models.PackageFile.create(obj, function(packageFileError, packageFileObject) {
-                  if (packageFileError) {
-                    console.log(packageFileError);
-                    cb(packageFileError);
+                if (!packageCreated) {
+                  if (stanza['Version']) {
+                    packageObject.latest = stanza['Version'];
+                    packageObject.save();
+                  }
+                }
+                Package.app.models.PackageVersion.create({
+                  version: stanza['Version'] ? stanza['Version'] : '0.0.1',
+                  packageId: packageObject.id,
+                  dependencies: stanza['Depends'],
+                  raw: stanza
+                }, function(packageVersionError, packageVersionObject) {
+                  if (packageVersionError) {
+                    console.log(packageVersionError);
+                    cb(packageVersionError);
                     return;
                   } else {
-                    cb(null, packageObject);
-                    Package.reload();
+                    obj['packageVersionId'] = packageVersionObject.id;
+                    Package.app.models.PackageFile.create(obj, function(packageFileError, packageFileObject) {
+                      if (packageFileError) {
+                        console.log(packageFileError);
+                        cb(packageFileError);
+                        return;
+                      } else {
+                        cb(null, packageObject);
+                        Package.reload();
+                      }
+                    });
                   }
                 });
               }
             });
           }
-        });
+        })
       }
     });
   };

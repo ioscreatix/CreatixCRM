@@ -1,3 +1,4 @@
+/* tslint:disable */
 /**
 * @module SDKModule
 * @author Jonathan Casarrubias <t:@johncasarrubias> <gh:jonathan-casarrubias>
@@ -58,6 +59,7 @@ import { PackageApi } from './services/custom/Package';
 import { ContainerApi } from './services/custom/Container';
 import { PackageFileApi } from './services/custom/PackageFile';
 import { PackageVersionApi } from './services/custom/PackageVersion';
+import { SectionApi } from './services/custom/Section';
 /**
 * @module SDKBrowserModule
 * @description
@@ -99,6 +101,7 @@ export class SDKBrowserModule {
         ContainerApi,
         PackageFileApi,
         PackageVersionApi,
+        SectionApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser },
         { provide: SocketDriver, useClass: SocketBrowser }
@@ -116,3 +119,4 @@ export * from './lb.config';
 export * from './storage/storage.swaps';
 export { CookieBrowser } from './storage/cookie.browser';
 export { StorageBrowser } from './storage/storage.browser';
+

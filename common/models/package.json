@@ -39,6 +39,9 @@
     },
     "latest": {
       "type": "string"
+    },
+    "detailedDescription": {
+      "type": "object"
     }
   },
   "validations": [],
@@ -52,6 +55,16 @@
       "type": "hasMany",
       "model": "PackageVersion",
       "foreignKey": ""
+    },
+    "section": {
+      "type": "belongsTo",
+      "model": "Section",
+      "foreignKey": "sectionId"
+    },
+    "downloads": {
+      "type": "hasMany",
+      "model": "PackageDownload",
+      "foreignKey": "packageId"
     }
   },
   "acls": [

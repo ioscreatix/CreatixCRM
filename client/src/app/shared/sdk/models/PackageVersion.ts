@@ -9,22 +9,26 @@ export interface PackageVersionInterface {
   "version": string;
   "changes"?: string;
   "dependencies"?: string;
+  "visible"?: boolean;
   "raw"?: any;
   "id"?: any;
   "packageId"?: any;
   package?: Package;
   file?: PackageFile;
+  downloads?: any[];
 }
 
 export class PackageVersion implements PackageVersionInterface {
   "version": string;
   "changes": string;
   "dependencies": string;
+  "visible": boolean;
   "raw": any;
   "id": any;
   "packageId": any;
   package: Package;
   file: PackageFile;
+  downloads: any[];
   constructor(data?: PackageVersionInterface) {
     Object.assign(this, data);
   }
@@ -55,6 +59,8 @@ export class PackageVersion implements PackageVersionInterface {
     return {
       name: 'PackageVersion',
       plural: 'PackageVersions',
+      path: 'PackageVersions',
+      idName: 'id',
       properties: {
         "version": {
           name: 'version',
@@ -67,6 +73,11 @@ export class PackageVersion implements PackageVersionInterface {
         "dependencies": {
           name: 'dependencies',
           type: 'string'
+        },
+        "visible": {
+          name: 'visible',
+          type: 'boolean',
+          default: true
         },
         "raw": {
           name: 'raw',
@@ -85,12 +96,26 @@ export class PackageVersion implements PackageVersionInterface {
         package: {
           name: 'package',
           type: 'Package',
-          model: 'Package'
+          model: 'Package',
+          relationType: 'belongsTo',
+                  keyFrom: 'packageId',
+          keyTo: 'id'
         },
         file: {
           name: 'file',
           type: 'PackageFile',
-          model: 'PackageFile'
+          model: 'PackageFile',
+          relationType: 'hasOne',
+                  keyFrom: 'id',
+          keyTo: 'packageVersionId'
+        },
+        downloads: {
+          name: 'downloads',
+          type: 'any[]',
+          model: '',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'versionId'
         },
       }
     }

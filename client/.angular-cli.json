@@ -92,6 +92,8 @@
         "assets/styles/plugins/nprogress/nprogress.scss",
         "assets/styles/plugins/owl-carousel/owl.carousel.scss",
         "assets/styles/plugins/plyr/plyr.scss",
+        "assets/styles/plugins/quill/quill.bubble.scss",
+        "assets/styles/plugins/quill/quill.snow.scss",
         "assets/styles/plugins/rickshaw/rickshaw.scss",
         "assets/styles/plugins/select2/select2.scss",
         "assets/styles/plugins/slick-carousel/slick.scss",

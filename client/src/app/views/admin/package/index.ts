@@ -3,11 +3,12 @@ import { BrowserModule } from "@angular/platform-browser";
 import { PackageViewComponent } from "./package-view.component";
 import {RemarkDirectivesModule} from "../../../helpers/directives/index";
 import {RouterModule} from "@angular/router";
-import { MarkdownModule } from 'angular2-markdown';
+import { QuillModule } from 'ngx-quill';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [PackageViewComponent],
-    imports     : [BrowserModule, RemarkDirectivesModule, RouterModule, MarkdownModule.forRoot()],
+    imports     : [BrowserModule, RemarkDirectivesModule, RouterModule, QuillModule, FormsModule],
     exports     : [PackageViewComponent]
 })
 

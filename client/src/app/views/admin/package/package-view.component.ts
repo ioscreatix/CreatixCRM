@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnDestroy} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, ElementRef, ViewChild, ViewEncapsulation} from '@angular/core';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -10,6 +10,7 @@ import {PackageFile} from "../../../shared/sdk/models/PackageFile";
 import {RemarkPlugin} from "../../../helpers/remark-plugin";
 import {ScrollablePlugin} from "../../../helpers/plugins/scrollable";
 import {ActivatedRoute} from "@angular/router";
+import {QuillEditorComponent} from "ngx-quill";
 
 @Component({
     selector: 'package-view',
@@ -20,7 +21,9 @@ export class PackageViewComponent implements AfterViewInit, OnDestroy{
 
   public package: Package;
   public packageID: string;
+  public detailedPackageDescription: any;
 
+  @ViewChild('editor') editor: QuillEditorComponent;
 
   constructor(
     private packageAPI: PackageApi,
@@ -46,6 +49,11 @@ export class PackageViewComponent implements AfterViewInit, OnDestroy{
     })
       .subscribe((packageObject : Package) => {
         this.package = packageObject;
+        this.detailedPackageDescription = this.package.detailedDescription;
+        if (this.editor) {
+          this.editor.writeValue(this.package.detailedDescription);
+          console.log(this.editor);
+        }
         console.log(this.package);
       });
   }
@@ -54,6 +62,19 @@ export class PackageViewComponent implements AfterViewInit, OnDestroy{
     // jQuery('body').addClass('page-aside-left');
     // jQuery('body').addClass('page-aside-scroll');
     jQuery('body').addClass('app-packages');
+  }
+
+
+  savePackageDescription() {
+    if (this.package) {
+      this.package.detailedDescription = this.detailedPackageDescription;
+      this.packageAPI.patchAttributes(this.package.id,{
+        "detailedDescription": this.detailedPackageDescription
+      })
+        .subscribe((packageChanges : any) => {
+          console.log(packageChanges);
+        });
+    }
   }
 
     ngOnDestroy() {

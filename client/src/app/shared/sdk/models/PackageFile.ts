@@ -62,6 +62,8 @@ export class PackageFile implements PackageFileInterface {
     return {
       name: 'PackageFile',
       plural: 'PackageFiles',
+      path: 'PackageFiles',
+      idName: 'id',
       properties: {
         "name": {
           name: 'name',
@@ -112,7 +114,10 @@ export class PackageFile implements PackageFileInterface {
         packageVersion: {
           name: 'packageVersion',
           type: 'PackageVersion',
-          model: 'PackageVersion'
+          model: 'PackageVersion',
+          relationType: 'belongsTo',
+                  keyFrom: 'packageVersionId',
+          keyTo: 'id'
         },
       }
     }

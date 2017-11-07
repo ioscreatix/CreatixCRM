@@ -10,6 +10,7 @@ import { Package } from '../../models/Package';
 import { Container } from '../../models/Container';
 import { PackageFile } from '../../models/PackageFile';
 import { PackageVersion } from '../../models/PackageVersion';
+import { Section } from '../../models/Section';
 
 export interface Models { [name: string]: any }
 
@@ -27,6 +28,7 @@ export class SDKModels {
     Container: Container,
     PackageFile: PackageFile,
     PackageVersion: PackageVersion,
+    Section: Section,
     
   };
 

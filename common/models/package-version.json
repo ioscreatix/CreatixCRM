@@ -36,6 +36,11 @@
       "type": "hasOne",
       "model": "PackageFile",
       "foreignKey": ""
+    },
+    "downloads": {
+      "type": "hasMany",
+      "model": "PackageDownload",
+      "foreignKey": "versionId"
     }
   },
   "acls": [],

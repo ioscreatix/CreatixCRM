@@ -1,6 +1,7 @@
 /* tslint:disable */
 import {
-  PackageVersion
+  PackageVersion,
+  Section
 } from '../index';
 
 declare var Object: any;
@@ -13,8 +14,14 @@ export interface PackageInterface {
   "author"?: string;
   "maintainer"?: string;
   "visible"?: boolean;
+  "stage"?: string;
+  "latest"?: string;
+  "detailedDescription"?: any;
   "id"?: any;
+  "sectionId"?: any;
   versions?: PackageVersion[];
+  section?: Section;
+  downloads?: any[];
 }
 
 export class Package implements PackageInterface {
@@ -26,8 +33,14 @@ export class Package implements PackageInterface {
   "author": string;
   "maintainer": string;
   "visible": boolean;
+  "stage": string;
+  "latest": string;
+  "detailedDescription": any;
   "id": any;
+  "sectionId": any;
   versions: PackageVersion[];
+  section: Section;
+  downloads: any[];
   constructor(data?: PackageInterface) {
     Object.assign(this, data);
   }
@@ -58,6 +71,8 @@ export class Package implements PackageInterface {
     return {
       name: 'Package',
       plural: 'Packages',
+      path: 'Packages',
+      idName: 'id',
       properties: {
         "name": {
           name: 'name',
@@ -91,10 +106,27 @@ export class Package implements PackageInterface {
         "visible": {
           name: 'visible',
           type: 'boolean',
-          default: false
+          default: true
+        },
+        "stage": {
+          name: 'stage',
+          type: 'string',
+          default: 'stable'
+        },
+        "latest": {
+          name: 'latest',
+          type: 'string'
+        },
+        "detailedDescription": {
+          name: 'detailedDescription',
+          type: 'any'
         },
         "id": {
           name: 'id',
+          type: 'any'
+        },
+        "sectionId": {
+          name: 'sectionId',
           type: 'any'
         },
       },
@@ -102,7 +134,26 @@ export class Package implements PackageInterface {
         versions: {
           name: 'versions',
           type: 'PackageVersion[]',
-          model: 'PackageVersion'
+          model: 'PackageVersion',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'packageId'
+        },
+        section: {
+          name: 'section',
+          type: 'Section',
+          model: 'Section',
+          relationType: 'belongsTo',
+                  keyFrom: 'sectionId',
+          keyTo: 'id'
+        },
+        downloads: {
+          name: 'downloads',
+          type: 'any[]',
+          model: '',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'packageId'
         },
       }
     }

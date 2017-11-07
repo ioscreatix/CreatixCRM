@@ -37,6 +37,8 @@ export class Container implements ContainerInterface {
     return {
       name: 'Container',
       plural: 'Containers',
+      path: 'Containers',
+      idName: 'id',
       properties: {
         "id": {
           name: 'id',

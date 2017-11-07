@@ -1,0 +1,36 @@
+{
+  "name": "PackageDownload",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "packageId": {
+      "type": "string",
+      "required": true
+    },
+    "versionId": {
+      "type": "string",
+      "required": true
+    },
+    "device-ip": {
+      "type": "string",
+      "required": true,
+      "default": "127.0.0.1"
+    },
+    "device-udid": {
+      "type": "string"
+    },
+    "device-model": {
+      "type": "string"
+    },
+    "device-firmware": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

@@ -42,7 +42,7 @@
 
   .page-content {
     height: 100%;
-    overflow-y:auto;
+    overflow-y: auto;
   }
 
 
@@ -74,8 +74,14 @@
         <div class="panel-body nav-tabs-animate nav-tabs-horizontal" data-plugin="tabs">
           <ul class="nav nav-tabs nav-tabs-line" role="tablist">
             <li class="nav-item" role="presentation">
-              <a class="nav-link active" data-toggle="tab" href="#versions" aria-controls="versions" role="tab"
+              <a class="nav-link active" data-toggle="tab" href="#description" aria-controls="description" role="tab"
                  aria-expanded="true">
+                Description
+              </a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" data-toggle="tab" href="#versions" aria-controls="versions" role="tab"
+                 aria-expanded="false">
                 Versions
               </a>
             </li>
@@ -88,6 +94,8 @@
             <li class="nav-item dropdown" style="display: none;">
               <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" aria-expanded="false">Menu </a>
               <div class="dropdown-menu" role="menu">
+                <a class="dropdown-item" data-toggle="tab" href="#description" aria-controls="versions" role="tab">Description
+                </a>
                 <a class="dropdown-item" data-toggle="tab" href="#versions" aria-controls="versions" role="tab">Versions
                 </a>
                 <a class="dropdown-item" data-toggle="tab" href="#comments" aria-controls="comments"
@@ -96,7 +104,29 @@
             </li>
           </ul>
           <div class="tab-content">
-            <div class="tab-pane active" id="versions" role="tabpanel" aria-expanded="true">
+            <div class="tab-pane active" id="description" role="tabpanel" aria-expanded="true">
+              <br>
+              <quill-editor #editor [(ngModel)]="detailedPackageDescription" [style]="{height: '200px'}">
+                <!--<div quill-editor-toolbar>-->
+                  <!--<span class="ql-formats">-->
+                    <!--<button class="ql-bold" [title]="'Bold'"></button>-->
+                    <!--<button class="ql-italic" [title]="'Bold'"></button>-->
+                    <!--<button class="ql-underline" [title]="'Bold'"></button>-->
+                  <!--</span>-->
+                  <!--<span class="ql-formats">-->
+                    <!--<select class="ql-align" [title]="'Aligment'">-->
+                      <!--<option selected></option>-->
+                      <!--<option value="center"></option>-->
+                      <!--<option value="right"></option>-->
+                      <!--<option value="justify"></option>-->
+                    <!--</select>-->
+                  <!--</span>-->
+                <!--</div>-->
+              </quill-editor>
+              <br>
+              <button type="button" (click)="savePackageDescription()" class="btn btn-block btn-primary">Save</button>
+            </div>
+            <div class="tab-pane" id="versions" role="tabpanel" aria-expanded="false">
               <div class="example table-responsive">
                 <table class="table">
                   <thead>

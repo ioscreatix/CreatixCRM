@@ -58,6 +58,8 @@ export class UserCredential implements UserCredentialInterface {
     return {
       name: 'UserCredential',
       plural: 'UserCredentials',
+      path: 'UserCredentials',
+      idName: 'id',
       properties: {
         "provider": {
           name: 'provider',
@@ -100,7 +102,10 @@ export class UserCredential implements UserCredentialInterface {
         user: {
           name: 'user',
           type: 'User',
-          model: 'User'
+          model: 'User',
+          relationType: 'belongsTo',
+                  keyFrom: 'userId',
+          keyTo: 'id'
         },
       }
     }
